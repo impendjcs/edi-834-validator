@@ -45,6 +45,10 @@ public class EDI834Validator {
 
             while ((line = reader.readLine()) != null) {
                 currentLineNumber++;
+                line = line.trim();
+                if (line.endsWith("~")) {
+                    line = line.substring(0, line.length() - 1);
+                }
                 if (line.startsWith("ISA")) {
                     hasISA = true;
                     validateISA(line);
@@ -350,7 +354,4 @@ public class EDI834Validator {
         return validationErrors;
     }
 
-    public void close() {
-        // No resources to close
-    }
 } 

@@ -176,7 +176,7 @@ public class TestReportGenerator {
         html.append("    </div>\n");
         html.append("    <div class=\"main-content\">\n");
 
-        // Navigation to summary
+        // Navigation to summary (move here, before main-grid)
         if (summaryReportLink != null && !summaryReportLink.isEmpty()) {
             html.append("    <div class=\"nav-summary centered\"><button onclick=\"window.location.href='" + summaryReportLink + "'\" style=\"background: linear-gradient(90deg, #ff7043 0%, #ffa726 100%); color: #fff; padding: 12px 32px; border: none; border-radius: 24px; cursor: pointer; font-size: 1.1em; font-weight: 600; box-shadow: 0 2px 6px #ffccbc; transition: background 0.2s, box-shadow 0.2s;\">Back to Summary Report</button></div>\n");
         }
