@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.6.xsd"
+                      xmlns:core="http://www.milyn.org/xsd/smooks/smooks-core-1.6.xsd"
+                      xmlns:edi="http://www.milyn.org/xsd/smooks/edi-1.6.xsd"
+                      xmlns:validation="http://www.milyn.org/xsd/smooks/validation-1.6.xsd">
+
+    <!-- EDI Reader Configuration -->
+    <edi:reader mappingModel="edi-mapping.xml" />
+
+    <!-- Validation Rules -->
+    <validation:rule executeOn="ISA">
+        <validation:validate>
+            <validation:rule>
+                <validation:field name="ISA06" required="true" />
+                <validation:field name="ISA07" required="true" />
+                <validation:field name="ISA12" required="true" />
+                <validation:field name="ISA13" required="true" />
+            </validation:rule>
+        </validation:validate>
+    </validation:rule>
+
+    <validation:rule executeOn="GS">
+        <validation:validate>
+            <validation:rule>
+                <validation:field name="GS01" required="true" />
+                <validation:field name="GS02" required="true" />
+                <validation:field name="GS03" required="true" />
+                <validation:field name="GS04" required="true" />
+                <validation:field name="GS05" required="true" />
+                <validation:field name="GS06" required="true" />
+                <validation:field name="GS07" required="true" />
+                <validation:field name="GS08" required="true" />
+            </validation:rule>
+        </validation:validate>
+    </validation:rule>
+
+    <validation:rule executeOn="ST">
+        <validation:validate>
+            <validation:rule>
+                <validation:field name="ST01" required="true" />
+                <validation:field name="ST02" required="true" />
+                <validation:field name="ST03" required="true" />
+            </validation:rule>
+        </validation:validate>
+    </validation:rule>
+
+    <validation:rule executeOn="BGN">
+        <validation:validate>
+            <validation:rule>
+                <validation:field name="BGN01" required="true" />
+                <validation:field name="BGN02" required="true" />
+                <validation:field name="BGN03" required="true" />
+                <validation:field name="BGN04" required="true" />
+                <validation:field name="BGN05" required="true" />
+            </validation:rule>
+        </validation:validate>
+    </validation:rule>
+
+    <validation:rule executeOn="INS">
+        <validation:validate>
+            <validation:rule>
+                <validation:field name="INS01" required="true" />
+                <validation:field name="INS02" required="true" />
+                <validation:field name="INS03" required="true" />
+                <validation:field name="INS04" required="true" />
+                <validation:field name="INS05" required="true" />
+                <validation:field name="INS06" required="true" />
+                <validation:field name="INS07" required="true" />
+                <validation:field name="INS08" required="true" />
+                <validation:field name="INS09" required="true" />
+            </validation:rule>
+        </validation:validate>
+    </validation:rule>
+
+    <!-- Custom Validation for SSN -->
+    <validation:rule executeOn="REF">
+        <validation:validate>
+            <validation:rule>
+                <validation:field name="REF01" required="true" />
+                <validation:field name="REF02" required="true" pattern="^\d{9}$" />
+            </validation:rule>
+        </validation:validate>
+    </validation:rule>
+
+    <!-- Error Collection -->
+    <core:reader class="org.milyn.delivery.DomModelCreator">
+        <core:params>
+            <core:param name="collectErrors">true</core:param>
+        </core:params>
+    </core:reader>
+
+</smooks-resource-list> 

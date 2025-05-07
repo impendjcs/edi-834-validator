@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edimap xmlns="http://www.milyn.org/xsd/smooks/edi-1.6.xsd">
+
+    <description>EDI 834 Mapping for NY X318 Member Reporting</description>
+    <delimiters segment="~" field="*" component=":" sub-component="^" escape="?" />
+
+    <segments xmltag="edi-message">
+        <segment code="ISA" xmltag="isa">
+            <field xmltag="isa01" />
+            <field xmltag="isa02" />
+            <field xmltag="isa03" />
+            <field xmltag="isa04" />
+            <field xmltag="isa05" />
+            <field xmltag="isa06" />
+            <field xmltag="isa07" />
+            <field xmltag="isa08" />
+            <field xmltag="isa09" />
+            <field xmltag="isa10" />
+            <field xmltag="isa11" />
+            <field xmltag="isa12" />
+            <field xmltag="isa13" />
+            <field xmltag="isa14" />
+            <field xmltag="isa15" />
+            <field xmltag="isa16" />
+        </segment>
+
+        <segment code="GS" xmltag="gs">
+            <field xmltag="gs01" />
+            <field xmltag="gs02" />
+            <field xmltag="gs03" />
+            <field xmltag="gs04" />
+            <field xmltag="gs05" />
+            <field xmltag="gs06" />
+            <field xmltag="gs07" />
+            <field xmltag="gs08" />
+        </segment>
+
+        <segment code="ST" xmltag="st">
+            <field xmltag="st01" />
+            <field xmltag="st02" />
+            <field xmltag="st03" />
+        </segment>
+
+        <segment code="BGN" xmltag="bgn">
+            <field xmltag="bgn01" />
+            <field xmltag="bgn02" />
+            <field xmltag="bgn03" />
+            <field xmltag="bgn04" />
+            <field xmltag="bgn05" />
+            <field xmltag="bgn06" />
+            <field xmltag="bgn07" />
+            <field xmltag="bgn08" />
+        </segment>
+
+        <segment code="INS" xmltag="ins">
+            <field xmltag="ins01" />
+            <field xmltag="ins02" />
+            <field xmltag="ins03" />
+            <field xmltag="ins04" />
+            <field xmltag="ins05" />
+            <field xmltag="ins06" />
+            <field xmltag="ins07" />
+            <field xmltag="ins08" />
+            <field xmltag="ins09" />
+        </segment>
+
+        <segment code="REF" xmltag="ref">
+            <field xmltag="ref01" />
+            <field xmltag="ref02" />
+        </segment>
+
+        <segment code="DTP" xmltag="dtp">
+            <field xmltag="dtp01" />
+            <field xmltag="dtp02" />
+            <field xmltag="dtp03" />
+        </segment>
+
+        <segment code="NM1" xmltag="nm1">
+            <field xmltag="nm101" />
+            <field xmltag="nm102" />
+            <field xmltag="nm103" />
+            <field xmltag="nm104" />
+            <field xmltag="nm105" />
+            <field xmltag="nm106" />
+            <field xmltag="nm107" />
+            <field xmltag="nm108" />
+            <field xmltag="nm109" />
+        </segment>
+
+        <segment code="N3" xmltag="n3">
+            <field xmltag="n301" />
+            <field xmltag="n302" />
+        </segment>
+
+        <segment code="N4" xmltag="n4">
+            <field xmltag="n401" />
+            <field xmltag="n402" />
+            <field xmltag="n403" />
+            <field xmltag="n404" />
+        </segment>
+
+        <segment code="SE" xmltag="se">
+            <field xmltag="se01" />
+            <field xmltag="se02" />
+        </segment>
+
+        <segment code="GE" xmltag="ge">
+            <field xmltag="ge01" />
+            <field xmltag="ge02" />
+        </segment>
+
+        <segment code="IEA" xmltag="iea">
+            <field xmltag="iea01" />
+            <field xmltag="iea02" />
+        </segment>
+    </segments>
+</edimap> 
