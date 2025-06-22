@@ -1,37 +1,33 @@
 package com.edi.validator;
 
+import com.edi.validator.model.ValidationError;
 import org.junit.AfterClass;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.awt.Desktop;
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
 
 public class EDI834ValidatorTest {
     private static final String TEST_FILE = Paths.get("src", "test", "resources", "valid-834.edi").toAbsolutePath().toString();
-    private static final List<String> allErrors = new ArrayList<>();
+    private static List<ValidationError> allErrors;
     private static final Map<String, String> testReportLinks = new LinkedHashMap<>();
-    private static String summaryReportLink = "";
 
-    @Before
-    public void clearErrors() {
-        allErrors.clear();
+    @BeforeClass
+    public static void validateFile() {
+        System.out.println("Running EDI 834 Validation...");
+        EDIValidator validator = new EDI834Validator();
+        allErrors = validator.validate(TEST_FILE);
+        System.out.println("Validation complete. Found " + allErrors.size() + " errors.");
     }
 
     @Test
     public void testRequiredSegments() {
-        System.out.println("\nTesting Required Segments...");
-        EDI834Validator validator = new EDI834Validator();
-        validator.validateEDI834(TEST_FILE);
-        List<String> errors = validator.getValidationErrors();
-        System.out.println("Required Segments Errors:");
-        errors.forEach(System.out::println);
-        allErrors.addAll(errors);
+        List<ValidationError> errors = filterErrors(TestReportGenerator.TestType.REQUIRED_SEGMENTS);
         String reportFile = TestReportGenerator.generateReport(
             "Required Segments", errors.isEmpty(), errors, TEST_FILE,
             TestReportGenerator.TestType.REQUIRED_SEGMENTS, ""
@@ -41,13 +37,7 @@ public class EDI834ValidatorTest {
 
     @Test
     public void testDateFormats() {
-        System.out.println("\nTesting Date Formats...");
-        EDI834Validator validator = new EDI834Validator();
-        validator.validateEDI834(TEST_FILE);
-        List<String> errors = validator.getValidationErrors();
-        System.out.println("Date Format Errors:");
-        errors.forEach(System.out::println);
-        allErrors.addAll(errors);
+        List<ValidationError> errors = filterErrors(TestReportGenerator.TestType.DATE_FORMATS);
         String reportFile = TestReportGenerator.generateReport(
             "Date Formats", errors.isEmpty(), errors, TEST_FILE,
             TestReportGenerator.TestType.DATE_FORMATS, ""
@@ -57,13 +47,7 @@ public class EDI834ValidatorTest {
 
     @Test
     public void testLoopIdentifiers() {
-        System.out.println("\nTesting Loop Identifiers...");
-        EDI834Validator validator = new EDI834Validator();
-        validator.validateEDI834(TEST_FILE);
-        List<String> errors = validator.getValidationErrors();
-        System.out.println("Loop Identifier Errors:");
-        errors.forEach(System.out::println);
-        allErrors.addAll(errors);
+        List<ValidationError> errors = filterErrors(TestReportGenerator.TestType.LOOP_IDENTIFIERS);
         String reportFile = TestReportGenerator.generateReport(
             "Loop Identifiers", errors.isEmpty(), errors, TEST_FILE,
             TestReportGenerator.TestType.LOOP_IDENTIFIERS, ""
@@ -73,22 +57,12 @@ public class EDI834ValidatorTest {
 
     @AfterClass
     public static void generateSummaryReport() {
-        System.out.println("\nTotal unique errors: " + allErrors.size());
-        System.out.println("All Errors:");
-        allErrors.forEach(System.out::println);
-
-        // Generate the summary report and get its filename
         String summaryFile = TestReportGenerator.generateSummaryReport(testReportLinks, allErrors, TEST_FILE);
-        summaryReportLink = getRelativeReportPath(summaryFile);
+        String summaryReportLink = getRelativeReportPath(summaryFile);
 
         // Regenerate each test report with the summary link
         for (Map.Entry<String, String> entry : testReportLinks.entrySet()) {
             String testName = entry.getKey();
-            String reportFile = "target/test-reports/" + entry.getValue();
-            // Re-run the validator to get errors for this test
-            EDI834Validator validator = new EDI834Validator();
-            validator.validateEDI834(TEST_FILE);
-            List<String> errors = validator.getValidationErrors();
             TestReportGenerator.TestType type;
             switch (testName) {
                 case "Required Segments": type = TestReportGenerator.TestType.REQUIRED_SEGMENTS; break;
@@ -96,13 +70,12 @@ public class EDI834ValidatorTest {
                 case "Loop Identifiers": type = TestReportGenerator.TestType.LOOP_IDENTIFIERS; break;
                 default: type = TestReportGenerator.TestType.SUMMARY;
             }
-            // Regenerate the report with the summary link
+            List<ValidationError> errors = filterErrors(type);
             TestReportGenerator.generateReport(
                 testName, errors.isEmpty(), errors, TEST_FILE, type, summaryReportLink
             );
         }
 
-        // Auto-open the summary report in the default browser
         if (summaryFile != null) {
             try {
                 File htmlFile = new File(summaryFile);
@@ -115,12 +88,27 @@ public class EDI834ValidatorTest {
         }
     }
 
+    private static List<ValidationError> filterErrors(TestReportGenerator.TestType testType) {
+        return allErrors.stream()
+            .filter(error -> {
+                String errorMessage = error.getMessage().toLowerCase();
+                switch (testType) {
+                    case REQUIRED_SEGMENTS:
+                        return errorMessage.contains("segment") || errorMessage.contains("missing");
+                    case DATE_FORMATS:
+                        return errorMessage.contains("date format");
+                    case LOOP_IDENTIFIERS:
+                        return errorMessage.contains("loop identifier");
+                    default:
+                        return false;
+                }
+            })
+            .collect(Collectors.toList());
+    }
+
     private static String getRelativeReportPath(String absolutePath) {
         if (absolutePath == null) return "";
-        int idx = absolutePath.lastIndexOf("/");
-        if (idx >= 0) {
-            return absolutePath.substring(idx + 1);
-        }
-        return absolutePath;
+        File file = new File(absolutePath);
+        return file.getName();
     }
 } 

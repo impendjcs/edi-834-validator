@@ -1,5 +1,6 @@
 package com.edi.validator;
 
+import com.edi.validator.model.ValidationError;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -61,13 +62,13 @@ public class TestReportGenerator {
         return validations;
     }
 
-    public static String generateReport(String testName, boolean passed, List<String> validationErrors, String filePath, TestType testType, String summaryReportLink) {
+    public static String generateReport(String testName, boolean passed, List<ValidationError> validationErrors, String filePath, TestType testType, String summaryReportLink) {
         try {
             Files.createDirectories(Paths.get(REPORT_DIR));
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
             String reportFile = String.format("%s/%s_%s.html", REPORT_DIR, testName.replaceAll("\\s+", "_"), timestamp);
 
-            List<String> filteredErrors = filterErrorsByTestType(validationErrors, testType);
+            List<ValidationError> filteredErrors = filterErrorsByTestType(validationErrors, testType);
 
             try (FileWriter writer = new FileWriter(reportFile)) {
                 writer.write(generateHtmlContent(testName, passed, filteredErrors, filePath, testType, summaryReportLink));
@@ -81,7 +82,7 @@ public class TestReportGenerator {
         }
     }
 
-    public static String generateSummaryReport(Map<String, String> testReportLinks, List<String> allErrors, String filePath) {
+    public static String generateSummaryReport(Map<String, String> testReportLinks, List<ValidationError> allErrors, String filePath) {
         try {
             Files.createDirectories(Paths.get(REPORT_DIR));
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
@@ -99,23 +100,24 @@ public class TestReportGenerator {
         }
     }
 
-    private static List<String> filterErrorsByTestType(List<String> errors, TestType testType) {
+    private static List<ValidationError> filterErrorsByTestType(List<ValidationError> errors, TestType testType) {
         if (testType == TestType.SUMMARY) return errors;
-        List<String> filtered = new ArrayList<>();
-        for (String error : errors) {
+        List<ValidationError> filtered = new ArrayList<>();
+        for (ValidationError error : errors) {
+            String errorMessage = error.getMessage().toLowerCase();
             switch (testType) {
                 case REQUIRED_SEGMENTS:
-                    if (error.toLowerCase().contains("segment") || error.toLowerCase().contains("missing")) {
+                    if (errorMessage.contains("segment") || errorMessage.contains("missing")) {
                         filtered.add(error);
                     }
                     break;
                 case DATE_FORMATS:
-                    if (error.toLowerCase().contains("date format")) {
+                    if (errorMessage.contains("date format")) {
                         filtered.add(error);
                     }
                     break;
                 case LOOP_IDENTIFIERS:
-                    if (error.toLowerCase().contains("loop identifier")) {
+                    if (errorMessage.contains("loop identifier")) {
                         filtered.add(error);
                     }
                     break;
@@ -126,7 +128,7 @@ public class TestReportGenerator {
         return filtered;
     }
 
-    private static String generateHtmlContent(String testName, boolean passed, List<String> validationErrors, String filePath, TestType testType, String summaryReportLink) {
+    private static String generateHtmlContent(String testName, boolean passed, List<ValidationError> validationErrors, String filePath, TestType testType, String summaryReportLink) {
         StringBuilder html = new StringBuilder();
         html.append("<!DOCTYPE html>\n");
         html.append("<html lang=\"en\">\n");
@@ -203,8 +205,8 @@ public class TestReportGenerator {
         } else {
             html.append("            <div class=\"error-list\">\n");
             html.append("                <h4>Validation Errors (").append(validationErrors.size()).append("):</h4>\n");
-            for (String error : validationErrors) {
-                html.append("                <div class=\"error-item\">").append(error).append("</div>\n");
+            for (ValidationError error : validationErrors) {
+                html.append("                <div class=\"error-item\">").append(error.toString()).append("</div>\n");
             }
             html.append("            </div>\n");
         }
@@ -279,7 +281,7 @@ public class TestReportGenerator {
         return html.toString();
     }
 
-    private static String generateSummaryHtmlContent(Map<String, String> testReportLinks, List<String> allErrors, String filePath) {
+    private static String generateSummaryHtmlContent(Map<String, String> testReportLinks, List<ValidationError> allErrors, String filePath) {
         StringBuilder html = new StringBuilder();
         html.append("<!DOCTYPE html>\n");
         html.append("<html lang=\"en\">\n");
@@ -355,8 +357,8 @@ public class TestReportGenerator {
         html.append("      <div class=\"main-col\">\n");
         html.append("        <div class=\"card error-list\">\n");
         html.append("            <h4>All Validation Errors (").append(allErrors.size()).append("):</h4>\n");
-        for (String error : allErrors) {
-            html.append("            <div class=\"error-item\">").append(error).append("</div>\n");
+        for (ValidationError error : allErrors) {
+            html.append("            <div class=\"error-item\">").append(error.toString()).append("</div>\n");
         }
         html.append("        </div>\n");
         html.append("      </div>\n");
@@ -418,20 +420,12 @@ public class TestReportGenerator {
         return false;
     }
 
-    private static List<Integer> extractErrorLineNumbers(List<String> validationErrors) {
-        List<Integer> errorLines = new ArrayList<>();
-        Pattern linePattern = Pattern.compile("Line (\\d+):");
-        
-        for (String error : validationErrors) {
-            java.util.regex.Matcher matcher = linePattern.matcher(error);
-            if (matcher.find()) {
-                try {
-                    errorLines.add(Integer.parseInt(matcher.group(1)));
-                } catch (NumberFormatException e) {
-                    // Skip if line number can't be parsed
-                }
-            }
+    private static List<Integer> extractErrorLineNumbers(List<ValidationError> validationErrors) {
+        List<Integer> lineNumbers = new ArrayList<>();
+        if (validationErrors == null) return lineNumbers;
+        for (ValidationError error : validationErrors) {
+            lineNumbers.add(error.getLineNumber());
         }
-        return errorLines;
+        return lineNumbers;
     }
 } 

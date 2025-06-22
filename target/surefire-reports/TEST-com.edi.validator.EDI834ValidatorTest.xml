@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.edi.validator.EDI834ValidatorTest" time="0.679" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.edi.validator.EDI834ValidatorTest" time="0.67" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.7.6-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\jcsen\AppData\Local\Temp\surefire4937347216254923474\surefirebooter-20250507172912966_3.jar C:\Users\jcsen\AppData\Local\Temp\surefire4937347216254923474 2025-05-07T17-29-12_786-jvmRun1 surefire-20250507172912966_1tmp surefire_0-20250507172912966_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\jcsen\AppData\Local\Temp\surefire1517875259792977241\surefirebooter-20250622140817567_3.jar C:\Users\jcsen\AppData\Local\Temp\surefire1517875259792977241 2025-06-22T14-08-17_422-jvmRun1 surefire-20250622140817567_1tmp surefire_0-20250622140817567_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\jcsen\EDI\target\test-classes;C:\Users\jcsen\EDI\target\classes;C:\Users\jcsen\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\jcsen\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\jcsen\.m2\repository\ch\qos\logback\logback-classic\1.2.11\logback-classic-1.2.11.jar;C:\Users\jcsen\.m2\repository\ch\qos\logback\logback-core\1.2.11\logback-core-1.2.11.jar;C:\Users\jcsen\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\jcsen\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\jcsen\AppData\Local\Temp\surefire4937347216254923474\surefirebooter-20250507172912966_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\jcsen\AppData\Local\Temp\surefire1517875259792977241\surefirebooter-20250622140817567_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.7+6-LTS"/>
@@ -59,106 +59,18 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testDateFormats" classname="com.edi.validator.EDI834ValidatorTest" time="0.113">
-    <system-out><![CDATA[
-Testing Date Formats...
-17:29:13.549 [main] DEBUG com.edi.validator.EDI834Validator - Validating ISA segment at line 1: ISA*00*          *00*          *ZZ*NYSTATE        *ZZ*RECEIVER       *230101*1200*^*00501*000000001*0*P*:
-17:29:13.553 [main] DEBUG com.edi.validator.EDI834Validator - Validating GS segment at line 2: GS*BE*NYSTATE*RECEIVER*20230101*1200*1*X*005010X220A1
-17:29:13.553 [main] DEBUG com.edi.validator.EDI834Validator - Validating ST segment at line 3: ST*834*0001*005010X220A1
-17:29:13.553 [main] DEBUG com.edi.validator.EDI834Validator - Validating BGN segment at line 4: BGN*00*123456789*20230101*20230101****2
-17:29:13.553 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 5: REF*38*123456789
-17:29:13.553 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 6: DTP*007*D8*20230101
-17:29:13.553 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 7: DTP*090*D8*20230101
-17:29:13.554 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 8: DTP*091*D8*20231231
-17:29:13.554 [main] DEBUG com.edi.validator.EDI834Validator - Validating N1 segment at line 9: N1*41*NY STATE HEALTHCARE*FI*123456789
-17:29:13.554 [main] DEBUG com.edi.validator.EDI834Validator - Validating N1 segment at line 10: N1*40*HEALTHCARE PROVIDER*FI*987654321
-17:29:13.554 [main] DEBUG com.edi.validator.EDI834Validator - Validating INS segment at line 11: INS*Y*18*030*XN*A***FT*N
-17:29:13.554 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 12: REF*0F*123456789
-17:29:13.554 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 13: REF*1L*ABC123456
-17:29:13.554 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 14: DTP*356*D8*20230101
-17:29:13.554 [main] DEBUG com.edi.validator.EDI834Validator - Validating NM1 segment at line 15: NM1*IL*1*DOE*JOHN*Q***34*123456789
-17:29:13.554 [main] DEBUG com.edi.validator.EDI834Validator - Validating DMG segment at line 16: DMG*D8*19800101*M
-17:29:13.555 [main] DEBUG com.edi.validator.EDI834Validator - Validating HD segment at line 17: HD*030**HLT*PPO*IND
-17:29:13.555 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 18: DTP*348*D8*20230101
-17:29:13.555 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 19: REF*1L*ABC123456
-17:29:13.555 [main] DEBUG com.edi.validator.EDI834Validator - Validating AMT segment at line 20: AMT*D2*100.00
-17:29:13.555 [main] DEBUG com.edi.validator.EDI834Validator - Validating AMT segment at line 21: AMT*P3*100.00
-17:29:13.555 [main] DEBUG com.edi.validator.EDI834Validator - Validating AMT segment at line 22: AMT*T3*100.00
-17:29:13.555 [main] DEBUG com.edi.validator.EDI834Validator - Validating LX segment at line 23: LX*1
-17:29:13.555 [main] DEBUG com.edi.validator.EDI834Validator - Validating PLA segment at line 24: PLA*2*P3*20230101
-17:29:13.555 [main] DEBUG com.edi.validator.EDI834Validator - Validating LS segment at line 25: LS*2700
-17:29:13.555 [main] DEBUG com.edi.validator.EDI834Validator - Validating NM1 segment at line 26: NM1*70*1*SMITH*JANE*M***34*987654321
-17:29:13.555 [main] DEBUG com.edi.validator.EDI834Validator - Validating LE segment at line 27: LE*2700
-Date Format Errors:
-Test report generated: target/test-reports/Date_Formats_20250507_172913.html
+  <testcase name="testDateFormats" classname="com.edi.validator.EDI834ValidatorTest" time="0.024">
+    <system-out><![CDATA[Running EDI 834 Validation...
+Validation complete. Found 16 errors.
+Test report generated: target/test-reports/Date_Formats_20250622_140818.html
 ]]></system-out>
   </testcase>
-  <testcase name="testLoopIdentifiers" classname="com.edi.validator.EDI834ValidatorTest" time="0.008">
-    <system-out><![CDATA[
-Testing Loop Identifiers...
-17:29:13.577 [main] DEBUG com.edi.validator.EDI834Validator - Validating ISA segment at line 1: ISA*00*          *00*          *ZZ*NYSTATE        *ZZ*RECEIVER       *230101*1200*^*00501*000000001*0*P*:
-17:29:13.578 [main] DEBUG com.edi.validator.EDI834Validator - Validating GS segment at line 2: GS*BE*NYSTATE*RECEIVER*20230101*1200*1*X*005010X220A1
-17:29:13.578 [main] DEBUG com.edi.validator.EDI834Validator - Validating ST segment at line 3: ST*834*0001*005010X220A1
-17:29:13.578 [main] DEBUG com.edi.validator.EDI834Validator - Validating BGN segment at line 4: BGN*00*123456789*20230101*20230101****2
-17:29:13.578 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 5: REF*38*123456789
-17:29:13.579 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 6: DTP*007*D8*20230101
-17:29:13.579 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 7: DTP*090*D8*20230101
-17:29:13.579 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 8: DTP*091*D8*20231231
-17:29:13.579 [main] DEBUG com.edi.validator.EDI834Validator - Validating N1 segment at line 9: N1*41*NY STATE HEALTHCARE*FI*123456789
-17:29:13.579 [main] DEBUG com.edi.validator.EDI834Validator - Validating N1 segment at line 10: N1*40*HEALTHCARE PROVIDER*FI*987654321
-17:29:13.580 [main] DEBUG com.edi.validator.EDI834Validator - Validating INS segment at line 11: INS*Y*18*030*XN*A***FT*N
-17:29:13.580 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 12: REF*0F*123456789
-17:29:13.581 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 13: REF*1L*ABC123456
-17:29:13.581 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 14: DTP*356*D8*20230101
-17:29:13.581 [main] DEBUG com.edi.validator.EDI834Validator - Validating NM1 segment at line 15: NM1*IL*1*DOE*JOHN*Q***34*123456789
-17:29:13.581 [main] DEBUG com.edi.validator.EDI834Validator - Validating DMG segment at line 16: DMG*D8*19800101*M
-17:29:13.581 [main] DEBUG com.edi.validator.EDI834Validator - Validating HD segment at line 17: HD*030**HLT*PPO*IND
-17:29:13.581 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 18: DTP*348*D8*20230101
-17:29:13.581 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 19: REF*1L*ABC123456
-17:29:13.582 [main] DEBUG com.edi.validator.EDI834Validator - Validating AMT segment at line 20: AMT*D2*100.00
-17:29:13.582 [main] DEBUG com.edi.validator.EDI834Validator - Validating AMT segment at line 21: AMT*P3*100.00
-17:29:13.582 [main] DEBUG com.edi.validator.EDI834Validator - Validating AMT segment at line 22: AMT*T3*100.00
-17:29:13.582 [main] DEBUG com.edi.validator.EDI834Validator - Validating LX segment at line 23: LX*1
-17:29:13.582 [main] DEBUG com.edi.validator.EDI834Validator - Validating PLA segment at line 24: PLA*2*P3*20230101
-17:29:13.582 [main] DEBUG com.edi.validator.EDI834Validator - Validating LS segment at line 25: LS*2700
-17:29:13.582 [main] DEBUG com.edi.validator.EDI834Validator - Validating NM1 segment at line 26: NM1*70*1*SMITH*JANE*M***34*987654321
-17:29:13.583 [main] DEBUG com.edi.validator.EDI834Validator - Validating LE segment at line 27: LE*2700
-Loop Identifier Errors:
-Test report generated: target/test-reports/Loop_Identifiers_20250507_172913.html
+  <testcase name="testLoopIdentifiers" classname="com.edi.validator.EDI834ValidatorTest" time="0.003">
+    <system-out><![CDATA[Test report generated: target/test-reports/Loop_Identifiers_20250622_140818.html
 ]]></system-out>
   </testcase>
-  <testcase name="testRequiredSegments" classname="com.edi.validator.EDI834ValidatorTest" time="0.005">
-    <system-out><![CDATA[
-Testing Required Segments...
-17:29:13.592 [main] DEBUG com.edi.validator.EDI834Validator - Validating ISA segment at line 1: ISA*00*          *00*          *ZZ*NYSTATE        *ZZ*RECEIVER       *230101*1200*^*00501*000000001*0*P*:
-17:29:13.592 [main] DEBUG com.edi.validator.EDI834Validator - Validating GS segment at line 2: GS*BE*NYSTATE*RECEIVER*20230101*1200*1*X*005010X220A1
-17:29:13.592 [main] DEBUG com.edi.validator.EDI834Validator - Validating ST segment at line 3: ST*834*0001*005010X220A1
-17:29:13.592 [main] DEBUG com.edi.validator.EDI834Validator - Validating BGN segment at line 4: BGN*00*123456789*20230101*20230101****2
-17:29:13.593 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 5: REF*38*123456789
-17:29:13.593 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 6: DTP*007*D8*20230101
-17:29:13.593 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 7: DTP*090*D8*20230101
-17:29:13.593 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 8: DTP*091*D8*20231231
-17:29:13.593 [main] DEBUG com.edi.validator.EDI834Validator - Validating N1 segment at line 9: N1*41*NY STATE HEALTHCARE*FI*123456789
-17:29:13.594 [main] DEBUG com.edi.validator.EDI834Validator - Validating N1 segment at line 10: N1*40*HEALTHCARE PROVIDER*FI*987654321
-17:29:13.594 [main] DEBUG com.edi.validator.EDI834Validator - Validating INS segment at line 11: INS*Y*18*030*XN*A***FT*N
-17:29:13.594 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 12: REF*0F*123456789
-17:29:13.594 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 13: REF*1L*ABC123456
-17:29:13.595 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 14: DTP*356*D8*20230101
-17:29:13.595 [main] DEBUG com.edi.validator.EDI834Validator - Validating NM1 segment at line 15: NM1*IL*1*DOE*JOHN*Q***34*123456789
-17:29:13.595 [main] DEBUG com.edi.validator.EDI834Validator - Validating DMG segment at line 16: DMG*D8*19800101*M
-17:29:13.595 [main] DEBUG com.edi.validator.EDI834Validator - Validating HD segment at line 17: HD*030**HLT*PPO*IND
-17:29:13.595 [main] DEBUG com.edi.validator.EDI834Validator - Validating DTP segment at line 18: DTP*348*D8*20230101
-17:29:13.595 [main] DEBUG com.edi.validator.EDI834Validator - Validating REF segment at line 19: REF*1L*ABC123456
-17:29:13.595 [main] DEBUG com.edi.validator.EDI834Validator - Validating AMT segment at line 20: AMT*D2*100.00
-17:29:13.595 [main] DEBUG com.edi.validator.EDI834Validator - Validating AMT segment at line 21: AMT*P3*100.00
-17:29:13.595 [main] DEBUG com.edi.validator.EDI834Validator - Validating AMT segment at line 22: AMT*T3*100.00
-17:29:13.595 [main] DEBUG com.edi.validator.EDI834Validator - Validating LX segment at line 23: LX*1
-17:29:13.595 [main] DEBUG com.edi.validator.EDI834Validator - Validating PLA segment at line 24: PLA*2*P3*20230101
-17:29:13.596 [main] DEBUG com.edi.validator.EDI834Validator - Validating LS segment at line 25: LS*2700
-17:29:13.596 [main] DEBUG com.edi.validator.EDI834Validator - Validating NM1 segment at line 26: NM1*70*1*SMITH*JANE*M***34*987654321
-17:29:13.597 [main] DEBUG com.edi.validator.EDI834Validator - Validating LE segment at line 27: LE*2700
-Required Segments Errors:
-Test report generated: target/test-reports/Required_Segments_20250507_172913.html
+  <testcase name="testRequiredSegments" classname="com.edi.validator.EDI834ValidatorTest" time="0.008">
+    <system-out><![CDATA[Test report generated: target/test-reports/Required_Segments_20250622_140818.html
 ]]></system-out>
   </testcase>
 </testsuite>

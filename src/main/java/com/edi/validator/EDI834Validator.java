@@ -1,5 +1,13 @@
 package com.edi.validator;
 
+import com.edi.validator.model.EDISegment;
+import com.edi.validator.model.ISASegment;
+import com.edi.validator.model.GSSegment;
+import com.edi.validator.model.STSegment;
+import com.edi.validator.model.BGNSegment;
+import com.edi.validator.model.N1Segment;
+import com.edi.validator.model.INSSegment;
+import com.edi.validator.model.REFSegment;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,15 +16,21 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.Set;
 
-public class EDI834Validator {
+public class EDI834Validator extends EDIValidator {
     private static final Logger logger = LoggerFactory.getLogger(EDI834Validator.class);
     private final List<String> validationErrors;
     private static final Pattern SSN_PATTERN = Pattern.compile("^\\d{9}$");
     private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{8}$");
     private int currentLineNumber;
+    private static final Set<String> REQUIRED_SEGMENTS = new HashSet<>(Arrays.asList(
+        "ISA", "GS", "ST", "BGN", "N1", "INS", "REF", "NM1", "DMG", "HD", "DTP", "AMT"
+    ));
 
     public EDI834Validator() {
         this.validationErrors = new ArrayList<>();
@@ -350,8 +364,17 @@ public class EDI834Validator {
         logger.debug("Validating LE segment at line {}: {}", currentLineNumber, line);
     }
 
-    public List<String> getValidationErrors() {
-        return validationErrors;
+    @Override
+    protected EDISegment createSegment(String segmentCode, String line) {
+        return EDISegmentFactory.createSegment(segmentCode, line, getCurrentLineNumber());
     }
 
-} 
+    @Override
+    protected void validateRequiredSegments() {
+        for (String segmentCode : REQUIRED_SEGMENTS) {
+            if (!isSegmentPresent(segmentCode)) {
+                addValidationError(segmentCode, "Segment", "Missing required segment: " + segmentCode);
+            }
+        }
+    }
+}
