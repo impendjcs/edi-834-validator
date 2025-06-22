@@ -1,5 +1,6 @@
 package com.edi.validator;
 
+import com.edi.validator.model.ValidationError;
 import java.util.List;
 
 public class Main {
@@ -14,19 +15,20 @@ public class Main {
         EDI834Validator validator = new EDI834Validator();
 
         try {
-            boolean isValid = validator.validateEDI834(ediFilePath);
-            List<String> errors = validator.getValidationErrors();
+            List<ValidationError> errors = validator.validate(ediFilePath);
 
-            if (isValid) {
+            if (errors.isEmpty()) {
                 System.out.println("EDI file is valid!");
             } else {
-                System.out.println("EDI file has validation errors:");
-                for (String error : errors) {
-                    System.out.println("- " + error);
+                System.out.println("EDI file has " + errors.size() + " validation errors:");
+                for (ValidationError error : errors) {
+                    System.out.println("- Line " + error.getLineNumber() + " (" + error.getSegmentCode() + 
+                                     "): " + error.getField() + " - " + error.getMessage());
                 }
             }
-        } finally {
-            validator.close();
+        } catch (Exception e) {
+            System.err.println("Error validating EDI file: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 } 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.edi.validator.EDI834ValidatorTest" time="0.67" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.edi.validator.EDI834ValidatorTest" time="0.713" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.7.6-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\jcsen\AppData\Local\Temp\surefire1517875259792977241\surefirebooter-20250622140817567_3.jar C:\Users\jcsen\AppData\Local\Temp\surefire1517875259792977241 2025-06-22T14-08-17_422-jvmRun1 surefire-20250622140817567_1tmp surefire_0-20250622140817567_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\jcsen\AppData\Local\Temp\surefire6509408171842066805\surefirebooter-20250622144430446_3.jar C:\Users\jcsen\AppData\Local\Temp\surefire6509408171842066805 2025-06-22T14-44-30_152-jvmRun1 surefire-20250622144430446_1tmp surefire_0-20250622144430446_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\jcsen\EDI\target\test-classes;C:\Users\jcsen\EDI\target\classes;C:\Users\jcsen\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\jcsen\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\jcsen\.m2\repository\ch\qos\logback\logback-classic\1.2.11\logback-classic-1.2.11.jar;C:\Users\jcsen\.m2\repository\ch\qos\logback\logback-core\1.2.11\logback-core-1.2.11.jar;C:\Users\jcsen\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\jcsen\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\jcsen\AppData\Local\Temp\surefire1517875259792977241\surefirebooter-20250622140817567_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\jcsen\AppData\Local\Temp\surefire6509408171842066805\surefirebooter-20250622144430446_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.7+6-LTS"/>
@@ -61,16 +61,16 @@
   </properties>
   <testcase name="testDateFormats" classname="com.edi.validator.EDI834ValidatorTest" time="0.024">
     <system-out><![CDATA[Running EDI 834 Validation...
-Validation complete. Found 16 errors.
-Test report generated: target/test-reports/Date_Formats_20250622_140818.html
+Validation complete. Found 19 errors.
+Test report generated: target/test-reports/Date_Formats_20250622_144431.html
 ]]></system-out>
   </testcase>
-  <testcase name="testLoopIdentifiers" classname="com.edi.validator.EDI834ValidatorTest" time="0.003">
-    <system-out><![CDATA[Test report generated: target/test-reports/Loop_Identifiers_20250622_140818.html
+  <testcase name="testLoopIdentifiers" classname="com.edi.validator.EDI834ValidatorTest" time="0.005">
+    <system-out><![CDATA[Test report generated: target/test-reports/Loop_Identifiers_20250622_144431.html
 ]]></system-out>
   </testcase>
-  <testcase name="testRequiredSegments" classname="com.edi.validator.EDI834ValidatorTest" time="0.008">
-    <system-out><![CDATA[Test report generated: target/test-reports/Required_Segments_20250622_140818.html
+  <testcase name="testRequiredSegments" classname="com.edi.validator.EDI834ValidatorTest" time="0.011">
+    <system-out><![CDATA[Test report generated: target/test-reports/Required_Segments_20250622_144431.html
 ]]></system-out>
   </testcase>
 </testsuite>
